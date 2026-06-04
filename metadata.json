@@ -1,0 +1,6 @@
+{
+  "name": "Tekshiramiz Ai",
+  "description": "Reads and analyzes deportation, ban, and immigration document images using Claude AI or Gemini AI to extract key details into structured warning cards.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
