@@ -1,5 +1,5 @@
 import { Handler } from "@netlify/functions";
-import { GoogleGenAI } from "@google/genai";
+import { GoogleGenAI, Type } from "@google/genai";
 
 // Initialize Google Gemini API on the server side using the @google/genai package as specified in the guidelines.
 function getGeminiClient(keyOverride?: string): GoogleGenAI {
@@ -201,6 +201,41 @@ export const handler: Handler = async (event, context) => {
           contents: { parts },
           config: {
             responseMimeType: "application/json",
+            responseSchema: {
+              type: Type.OBJECT,
+              properties: {
+                name_cyrillic: { type: Type.STRING },
+                name_latin: { type: Type.STRING },
+                birth_date: { type: Type.STRING },
+                citizenship: { type: Type.STRING },
+                decision_type: { type: Type.STRING },
+                article: { type: Type.STRING },
+                decision_date: { type: Type.STRING },
+                ban_start: { type: Type.STRING },
+                ban_end: { type: Type.STRING },
+                department: { type: Type.STRING },
+                status: { type: Type.STRING },
+                record_code: { type: Type.STRING },
+                has_deport: { type: Type.BOOLEAN },
+                summary_uz: { type: Type.STRING }
+              },
+              required: [
+                "name_cyrillic",
+                "name_latin",
+                "birth_date",
+                "citizenship",
+                "decision_type",
+                "article",
+                "decision_date",
+                "ban_start",
+                "ban_end",
+                "department",
+                "status",
+                "record_code",
+                "has_deport",
+                "summary_uz"
+              ]
+            }
           }
         });
 

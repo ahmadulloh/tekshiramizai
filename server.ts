@@ -2,7 +2,7 @@ import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 import { createServer as createViteServer } from "vite";
-import { GoogleGenAI } from "@google/genai";
+import { GoogleGenAI, Type } from "@google/genai";
 import fetch from "node-fetch"; // Node v18+ supports fetch natively, but we can also use global fetch or node-fetch. Standard global fetch is supported in Node 18+. Let's just use the global fetch!
 
 const app = express();
@@ -168,6 +168,41 @@ app.post("/api/analyze-documents", async (req, res) => {
           contents: { parts },
           config: {
             responseMimeType: "application/json",
+            responseSchema: {
+              type: Type.OBJECT,
+              properties: {
+                name_cyrillic: { type: Type.STRING },
+                name_latin: { type: Type.STRING },
+                birth_date: { type: Type.STRING },
+                citizenship: { type: Type.STRING },
+                decision_type: { type: Type.STRING },
+                article: { type: Type.STRING },
+                decision_date: { type: Type.STRING },
+                ban_start: { type: Type.STRING },
+                ban_end: { type: Type.STRING },
+                department: { type: Type.STRING },
+                status: { type: Type.STRING },
+                record_code: { type: Type.STRING },
+                has_deport: { type: Type.BOOLEAN },
+                summary_uz: { type: Type.STRING }
+              },
+              required: [
+                "name_cyrillic",
+                "name_latin",
+                "birth_date",
+                "citizenship",
+                "decision_type",
+                "article",
+                "decision_date",
+                "ban_start",
+                "ban_end",
+                "department",
+                "status",
+                "record_code",
+                "has_deport",
+                "summary_uz"
+              ]
+            }
           }
         });
 
